@@ -82,5 +82,6 @@ test:
 production:
   <<: *default
   database: sessions_production
-  username: sessions
-  password: <%= ENV["SESSIONS_DATABASE_PASSWORD"] %>
+  # username: sessions
+  # password: <%= ENV["SESSIONS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
