@@ -30,7 +30,6 @@ function NavBar({currentUser, handleLogout}) {
                             <li><NavLink to='/' onClick={closeMenu}>Home</NavLink></li>
                             <li><NavLink to='/profile' onClick={closeMenu}>Profile</NavLink></li>
                             <li><NavLink to='/' onClick={() => { closeMenu(); handleLogout(); }}>Logout</NavLink></li>
-                            {/* <li><NavLink to='/signup' onClick={closeMenu}>Signup</NavLink></li> */}
                         </>
                         ) : (
                         <>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
+import "../css/login.css"
 
 function Login({updateUser}) {
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ function Login({updateUser}) {
             if(res.ok){
                 res.json().then(user => {
                     updateUser(user)
-                    history.push('/profile')
+                    history.push('/')
                 })
             } else {
                 res.json().then(json => setErrors(json.errors))
@@ -41,19 +42,20 @@ function Login({updateUser}) {
 
     return (
         <div id="login-container"> 
-            <div id="login-bg">
-                <form onSubmit={onSubmit}>
-                    <label >
-                    Username
-                    </label>
+        <h1 className="h2">Welcome to ClubFlatiron</h1>
+            <div id="login-form-container">
+                <form id="login-form" onSubmit={onSubmit}>
+                    <label for="username">Username: </label>
                     <input type='text' name='username' value={username} onChange={handleChange} />
-                
-                    <label className='text-white'>
-                    Password
-                    </label>
+                    <br/><br/>
+                    <label for="password">Password: </label>
                     <input type='password' name='password' value={password} onChange={handleChange} />
-                        
-                    <input type='submit' value='Log in!' />
+                    <br/><br/>
+                    {/* <input type='submit' value='Log in' /> */}
+                    <button
+                        // class='border-white border p-2 text-xs text-white'
+                        type="submit">Log in
+                    </button>
                 </form>
                 {errors? <div>{errors}</div>:null}
             </div>

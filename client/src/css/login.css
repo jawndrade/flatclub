@@ -1,4 +1,10 @@
+.h2{
+    font-weight: 250;
+    color: #fff;
+}
+
 #login-container {
+    background-color: #133056;
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -7,25 +13,13 @@
     align-items: center;
 }
 
-#login-bg {
-    background-image: url('/public/bg.jpg');
-    background-position: center;
-    background-size: cover;
-    width: 90vw;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
 #login-form-container{
-    border: solid 2px black;
+    border: solid 1px black;
     border-radius: 10px;
     width: 300px;
     padding: 15px;
     background-color: white;
-    box-shadow: 0px 0px 8px 1px;
+    color: black;
 }
 
 #login-form-container > h3 {
@@ -35,18 +29,9 @@
     margin-top: 5px;
 }
 
-#login-form > button {
-    width: 100px;
-    align-self: center;
-}
-
 #login-form > input {
-    width: 90%;
+    width: 95%;
     align-self: center;
-}
-
-#login-form > label {
-    padding-left: 18px;
 }
 
 a {
