@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
@@ -43,35 +42,22 @@ function Login({updateUser}) {
     }
 
     return (
-
-        <Container sx={{
-            marginTop: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-        }}>
-            <h1>Login</h1>
-            <Container sx={{ padding: 3}}>
-                <form onSubmit={onSubmit}>
-                    <Box
-                        sx={{
-                            marginTop: 2,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <label>Username</label>
-                        <input type='text' name='username' value={username} onChange={handleChange} />
-                        <label>Password</label>
-                        <input type='text' name='password' value={password} onChange={handleChange} />
-                        <Button variant='contained' type='submit' value='Log In'>Log In</Button>
-                    </Box>
-                </form>
-                {errors ? <div>{errors}</div> : null}
-            </Container>
-            <Button variant="outlined"><a href='/signup'>Sign Up</a></Button>
-        </Container>
+        <div className="p-4"> 
+            <form className='flex flex-col' onSubmit={onSubmit}>
+                <label className='text-white'>
+                Username
+                </label>
+                <input type='text' name='username' value={username} onChange={handleChange} />
+            
+                <label className='text-white'>
+                Password
+                </label>
+                <input type='password' name='password' value={password} onChange={handleChange} />
+                    
+                <input className='border w-[150px] text-white' type='submit' value='Log in!' />
+            </form>
+            {errors? <div>{errors}</div>:null}
+        </div>
     )
 }
 
