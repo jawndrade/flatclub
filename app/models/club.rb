@@ -3,6 +3,6 @@ class Club < ApplicationRecord
     has_many :users, through: :memberships
     has_many :posts
 
-    validates :topic, presence: true
+    validates :topic, :name, presence: true
 
 end

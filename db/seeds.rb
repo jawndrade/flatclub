@@ -18,9 +18,9 @@ liza = User.create!(first_name: "Liza", last_name: "McLain", username: "lizer", 
 
 
 puts "seeding clubs..."
-react = Club.create!(description: "Your one-stop shop for all things React! This week's focus is on useContext.", topic: "React")
-css = Club.create!(description: "All things CSS! Feel free to share any resources, hot-tips, or set up demos!", topic: "CSS")
-active_record = Club.create!(description: "Active Record club always be bumpin'.", topic: "Active Record")
+react = Club.create!(name: "react", description: "Your one-stop shop for all things React! This week's focus is on useContext.", topic: "React")
+css = Club.create!(name: "css", description: "All things CSS! Feel free to share any resources, hot-tips, or set up demos!", topic: "CSS")
+active_record = Club.create!(name: "active record", description: "Active Record club always be bumpin'.", topic: "Active Record")
 
 puts "seeding memberships..."
 jess_css_membership = Membership.create!(user_id: jess.id, club_id: css.id)
