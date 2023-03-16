@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 
 function Login({updateUser}) {
     const [formData, setFormData] = useState({
@@ -28,7 +26,7 @@ function Login({updateUser}) {
             if(res.ok){
                 res.json().then(user => {
                     updateUser(user)
-                    history.push('/')
+                    history.push('/profile')
                 })
             } else {
                 res.json().then(json => setErrors(json.errors))
@@ -42,21 +40,23 @@ function Login({updateUser}) {
     }
 
     return (
-        <div className="p-4"> 
-            <form className='flex flex-col' onSubmit={onSubmit}>
-                <label className='text-white'>
-                Username
-                </label>
-                <input type='text' name='username' value={username} onChange={handleChange} />
-            
-                <label className='text-white'>
-                Password
-                </label>
-                <input type='password' name='password' value={password} onChange={handleChange} />
-                    
-                <input className='border w-[150px] text-white' type='submit' value='Log in!' />
-            </form>
-            {errors? <div>{errors}</div>:null}
+        <div id="login-container"> 
+            <div id="login-bg">
+                <form onSubmit={onSubmit}>
+                    <label >
+                    Username
+                    </label>
+                    <input type='text' name='username' value={username} onChange={handleChange} />
+                
+                    <label className='text-white'>
+                    Password
+                    </label>
+                    <input type='password' name='password' value={password} onChange={handleChange} />
+                        
+                    <input type='submit' value='Log in!' />
+                </form>
+                {errors? <div>{errors}</div>:null}
+            </div>
         </div>
     )
 }

@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login"
 import NavBar from "./components/NavBar"
 import Signup from "./components/Signup";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
+  const [allClubs, setAllClubs] = useState([])
 
   const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
@@ -38,6 +40,16 @@ function App() {
     .then(window.location.href = '/login')
   }
 
+  const onDeleteUser = (id) => {
+    const updatedUser = users.filter((currentUser) => currentUser.id !== id)
+    setCurrentUser(updatedUser)
+  }
+
+  const onEditUserProfile = (modifiedUser) => {
+    const updateUser = users.map(user => currentUser.id === user.id ? modifiedUser : user)
+    setCurrentUser(updateUser)
+  }
+
   return (
   
     <div>
@@ -45,18 +57,27 @@ function App() {
       <NavBar currentUser={currentUser} handleLogout={handleLogout}/>
       <Switch>
         <Route exact path="/">
-          <Login updateUser={updateUser}/>
+          {/* <Login updateUser={updateUser}/> */}
         </Route>
+
         <Route exact path="/login">
           <Login updateUser={updateUser}/>
         </Route>
+
         <Route exact path="/signup">
-            <Signup setCurrentUser={setCurrentUser} newUser={newUser}/>
+          <Signup setCurrentUser={setCurrentUser} newUser={newUser}/>
         </Route>
+
+        <Route path="/profile">
+            <UserProfile
+            currentUser={currentUser}
+            onDeleteUser={onDeleteUser}
+            onEditUserProfile={onEditUserProfile}/>
+        </Route>
+
       </Switch>
       </Router>
     </div>
-
   )
 }
 
