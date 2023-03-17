@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login"
 import NavBar from "./components/NavBar"
-import Signup from "./components/Signup";
-import UserProfile from "./components/UserProfile";
+import Signup from "./components/Signup"
+import UserProfile from "./components/UserProfile"
+import Club from "./components/Club"
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
-  const [allClubs, setAllClubs] = useState([])
+  const [clubs, setClubs] = useState([])
+  const [comments, setComments] = useState([])
 
   const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
@@ -17,9 +20,9 @@ function App() {
 
   useEffect(() => {
     fetch("/authorized_user")
-      .then(res => {
-        if(res.ok){
-          res.json().then(user => {
+      .then(resp => {
+        if(resp.ok){
+          resp.json().then(user => {
             updateUser(user)
           })
         }
@@ -28,7 +31,7 @@ function App() {
 
   useEffect(() => {
       fetch('/users')
-        .then(r => r.json())
+        .then(resp => resp.json())
         .then(data => setUsers(data))
   }, [])
 
@@ -49,6 +52,13 @@ function App() {
     const updateUser = users.map(user => currentUser.id === user.id ? modifiedUser : user)
     setCurrentUser(updateUser)
   }
+
+  useEffect(() => {
+    fetch("/clubs")
+    .then((resp) => resp.json())
+    .then((data) => setClubs(data))
+    // .then(console.log('fetched!'))
+  }, [])
 
   return (
   
@@ -73,6 +83,11 @@ function App() {
             currentUser={currentUser}
             onDeleteUser={onDeleteUser}
             onEditUserProfile={onEditUserProfile}/>
+        </Route>
+
+        <Route path="/dashboard">
+            <Dashboard clubs={clubs}
+            />
         </Route>
 
       </Switch>

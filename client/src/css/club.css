@@ -1,0 +1,15 @@
+.club-card {
+    margin: 20px;
+    padding: 50px;
+    display: inline-block;
+    text-align: center;
+    width: 35vw;
+    height: 20vw;
+    overflow: scroll;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+    transition: all .4s;
+  }
+
+  .club-card:hover {
+    transform: translateY(-10px) scale(1.03);
+  }
