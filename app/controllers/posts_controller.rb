@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    skip_before_action :authorized, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show, :destroy]
 
     def index
         posts = Post.all
@@ -14,8 +14,7 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create!(post_params)
-        creator_post = CreatorPost.create!(creator_post_params(post))
-        render json: creator_post, status: :created
+        render json: post, status: :created
     end
 
     def destroy
@@ -24,7 +23,6 @@ class PostsController < ApplicationController
         head :no_content
     end
 
-
     private
     
     def find_post
@@ -32,12 +30,12 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.permit(:title, :body, :user_id).with_defaults(creator_id: session[:user_id])
+        params.permit(:title, :body, :user_id, :club_id)
     end
 
-    def creator_post_params(post)
-        params.permit(:user_id, :post_id).with_defaults(user_id: session[:user_id], post_id: post.id)
-    end
+    # def creator_post_params(post)
+    #     params.permit(:user_id, :post_id).with_defaults(user_id: session[:user_id], post_id: post.id)
+    # end
 
     def render_unprocessable_entity_response(error)
         render json: { errors: "Please fill out all required fields" }, status: :unprocessable_entity
