@@ -20,7 +20,7 @@ function NavBar({currentUser, handleLogout}) {
     return (
         <nav className="navbar-container">
             <div className="logo-container">
-                <h2 className="logo-text">ClubFlatiron</h2>
+                <h2 className="logo-text">//ClubFlatiron</h2>
             </div>
             <menu>
                 <ul className='nav-links grow' id={showMenu ? "mobile-show" : "mobile-hide"}>

@@ -35,6 +35,18 @@ function App() {
         .then(data => setUsers(data))
   }, [])
 
+  useEffect(() => {
+    fetch("/clubs")
+    .then((resp) => resp.json())
+    .then((data) => setClubs(data))
+  }, [])
+
+  useEffect(() => {
+    fetch('/comments')
+      .then(resp => resp.json())
+      .then(data => setComments(data))
+  }, [])
+
   function handleLogout(){
     fetch('/logout', {
       method: 'DELETE'
@@ -52,13 +64,6 @@ function App() {
     const updateUser = users.map(user => currentUser.id === user.id ? modifiedUser : user)
     setCurrentUser(updateUser)
   }
-
-  useEffect(() => {
-    fetch("/clubs")
-    .then((resp) => resp.json())
-    .then((data) => setClubs(data))
-    // .then(console.log('fetched!'))
-  }, [])
 
   return (
   

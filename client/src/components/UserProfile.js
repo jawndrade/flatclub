@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import '../css/userprofile.css'
 
 function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
 
@@ -45,22 +46,22 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
 
     const editForm = (
         <form className='edit-profile-form' onSubmit={handleEditFormSubmit}>
-            <input type="text" placeholder="first name" name="first_name" value={first_name} onChange={handleFormData}/>
+            <input type="text" placeholder="First Name" name="first_name" value={first_name} onChange={handleFormData}/>
             <br />
-            <input type="text" placeholder="last name" name="last_name" value={last_name} onChange={handleFormData}/>
+            <input type="text" placeholder="Last Name" name="last_name" value={last_name} onChange={handleFormData}/>
             <br />
-            <input type='text' placeholder="username" name="username" value={username} onChange={handleFormData}/>
+            <input type='text' placeholder="Username" name="username" value={username} onChange={handleFormData}/>
             <br />
-            <input type='password' placeholder="password" name="password" value={password} onChange={handleFormData}/>
+            <input type="text" placeholder="Profile Image URL" name="image" value={image} onChange={handleFormData}/>
             <br />
-            <input type="text" placeholder="profile pic" name="image" value={image} onChange={handleFormData}/>
+            <input required type='Password' placeholder="Password" name="password" value={password} onChange={handleFormData}/>
             <br />
             <button type="button" className="cancel-button" onClick={() => setEditFormOpen(false)}>Cancel</button>
             <button type="submit">Save</button>
         </form>
     )
 
-    const editButton = <button onClick={()=> setEditFormOpen(true)}>Edit</button>
+    const editButton = <button onClick={()=> setEditFormOpen(true)}>Edit Profile</button>
 
     const {id} = currentUser
 
@@ -86,9 +87,10 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
         window.location.reload();
     }
         if(!currentUser) {history.push("/posts")}
+
         return (
-            <div className="max-w-max mx-auto">
-                <div className='basic-box'>
+            <div>
+                <div className='container'>
                     {/* <input type="text" placeholder="Enter new image URL here" name="photo" id="profilePicInput" /> */}
                     <label htmlFor="profileImageInput" className='max-w-max mx-auto'>
                         <div className="profile-image" role="button" title="Click to edit photo">
@@ -96,7 +98,7 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
                         </div>
                     </label>
 
-                    <div className="profile-info">
+                    <div>
                         <p className="name">{currentUser.first_name} {currentUser.last_name}</p>
                         <p className="username">@{currentUser.username}</p>
                         {editFormOpen ? editForm : editButton}

@@ -1,15 +1,38 @@
 .club-card {
     margin: 20px;
-    padding: 50px;
+    padding: 30px;
+    border-radius: 15px;
     display: inline-block;
     text-align: center;
-    width: 35vw;
+    width: 25vw;
     height: 20vw;
     overflow: scroll;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+    /* box-shadow: 0 15px 40px rgba(0, 0, 0, .15); */
+    box-shadow: 10px 10px 5px 0px rgba(53,190,249,0.5);
     transition: all .4s;
+    background-color: white;
   }
 
   .club-card:hover {
     transform: translateY(-10px) scale(1.03);
   }
+
+  .card-h2 {
+    font-weight: 300;
+  }
+
+  .dashboard-wrapper{
+    display: grid;
+    gap: 20px;
+    padding: 30px 50px;
+    /* grid-template-columns: 200px 200px 200px; */
+    /* border: 1px solid #ddd; */
+    /* border-radius: 15px; */
+    /* margin: 10px auto; */
+    /* max-width: 85%; */
+    background-color: #133056;
+}
+
+.dashboard-grid {
+    padding-top: 8%;
+}
