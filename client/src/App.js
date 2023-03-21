@@ -5,7 +5,8 @@ import NavBar from "./components/NavBar"
 import Signup from "./components/Signup"
 import UserProfile from "./components/UserProfile"
 import Club from "./components/Club"
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard"
+import ClubView from "./components/ClubView"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -35,6 +36,18 @@ function App() {
         .then(data => setUsers(data))
   }, [])
 
+  useEffect(() => {
+    fetch("/clubs")
+    .then((resp) => resp.json())
+    .then((data) => setClubs(data))
+  }, [])
+
+  useEffect(() => {
+    fetch('/comments')
+      .then(resp => resp.json())
+      .then(data => setComments(data))
+  }, [])
+
   function handleLogout(){
     fetch('/logout', {
       method: 'DELETE'
@@ -52,13 +65,6 @@ function App() {
     const updateUser = users.map(user => currentUser.id === user.id ? modifiedUser : user)
     setCurrentUser(updateUser)
   }
-
-  useEffect(() => {
-    fetch("/clubs")
-    .then((resp) => resp.json())
-    .then((data) => setClubs(data))
-    // .then(console.log('fetched!'))
-  }, [])
 
   return (
   
@@ -88,6 +94,10 @@ function App() {
         <Route path="/dashboard">
             <Dashboard clubs={clubs}
             />
+        </Route>
+
+        <Route path="/clubs/:id">
+          <ClubView />
         </Route>
 
       </Switch>

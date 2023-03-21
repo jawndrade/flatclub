@@ -27,7 +27,7 @@ function Login({updateUser}) {
             if(res.ok){
                 res.json().then(user => {
                     updateUser(user)
-                    history.push('/')
+                    history.push('/dashboard')
                 })
             } else {
                 res.json().then(json => setErrors(json.errors))

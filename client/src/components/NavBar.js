@@ -20,14 +20,14 @@ function NavBar({currentUser, handleLogout}) {
     return (
         <nav className="navbar-container">
             <div className="logo-container">
-                <h2 className="logo-text">ClubFlatiron</h2>
+                <h2 className="logo-text">//ClubFlatiron</h2>
             </div>
             <menu>
                 <ul className='nav-links grow' id={showMenu ? "mobile-show" : "mobile-hide"}>
                     {currentUser && Object.keys(currentUser).length !== 0 ? (
                         <>
                             <img width="25px" className="userImage" src={currentUser.image} alt="user"/>
-                            <li><NavLink to='/' onClick={closeMenu}>Home</NavLink></li>
+                            <li><NavLink to='/dashboard' onClick={closeMenu}>Home</NavLink></li>
                             <li><NavLink to='/profile' onClick={closeMenu}>Profile</NavLink></li>
                             <li><NavLink to='/' onClick={() => { closeMenu(); handleLogout(); }}>Logout</NavLink></li>
                         </>
