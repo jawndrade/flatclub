@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Club from './Club'
 
 function Dashboard({clubs}) {
+    
     return (
         <div className="dashboard-wrapper">
             {/* <h2>All clubs</h2> */}

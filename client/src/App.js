@@ -5,7 +5,8 @@ import NavBar from "./components/NavBar"
 import Signup from "./components/Signup"
 import UserProfile from "./components/UserProfile"
 import Club from "./components/Club"
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard"
+import ClubView from "./components/ClubView"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -93,6 +94,10 @@ function App() {
         <Route path="/dashboard">
             <Dashboard clubs={clubs}
             />
+        </Route>
+
+        <Route path="/clubs/:id">
+          <ClubView />
         </Route>
 
       </Switch>
