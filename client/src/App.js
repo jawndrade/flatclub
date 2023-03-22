@@ -4,7 +4,6 @@ import Login from "./components/Login"
 import NavBar from "./components/NavBar"
 import Signup from "./components/Signup"
 import UserProfile from "./components/UserProfile"
-import Club from "./components/Club"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 
@@ -38,8 +37,8 @@ function App() {
 
   useEffect(() => {
     fetch("/clubs")
-    .then((resp) => resp.json())
-    .then((data) => setClubs(data))
+    .then(resp => resp.json())
+    .then(data => setClubs(data))
   }, [])
 
   useEffect(() => {
