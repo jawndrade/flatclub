@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import "../css/club.css"
 
-function Club({club}) {
+function Club({club, addToMyClubs}) {
     const {topic, description, name} = club
 
     function handleClick() {
-        window.location.href = `/clubs/${club.id}`
-      }
+        window.location.href = `/clubs/${club.id}`  
+    }
 
     return (
         <div>
@@ -19,6 +19,8 @@ function Club({club}) {
                 <NavLink to={`/clubs/${club.id}`}>
                     <button onClick={handleClick}>View posts</button>
                 </NavLink>
+                <br/>
+                <button onClick={() => addToMyClubs(club)}>Join Club</button>
             </div>
         </div>
     )

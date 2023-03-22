@@ -6,6 +6,7 @@ import Signup from "./components/Signup"
 import UserProfile from "./components/UserProfile"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
+import Club from "./components/Club"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -46,6 +47,39 @@ function App() {
       .then(resp => resp.json())
       .then(data => setComments(data))
   }, [])
+
+  function addToMyClubs(club){
+    fetch('/memberships')
+    .then(resp => resp.json())
+    .then(data => {
+      const existingMembership = data.find(membership => membership.user_id === currentUser.id && membership.club_id === club.id)
+      if (existingMembership) {
+        alert("You're already a member of this club, you silly goose!")
+      } else {
+        fetch('/memberships', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            club_id: club.id,
+            user_id: currentUser.id
+          })
+        })
+        .then(resp => {
+          if (resp.ok) {
+            alert('Successfully joined this club!')
+          } else {
+            throw new Error('Failed to join, please try again later')
+          }
+        })
+        .catch(err => {
+          console.error(err)
+          alert("You're already a member of this club, you silly goose!")
+        })
+      }
+    })
+  }
 
   function handleLogout(){
     fetch('/logout', {
@@ -91,7 +125,7 @@ function App() {
         </Route>
 
         <Route path="/dashboard">
-            <Dashboard clubs={clubs}
+            <Dashboard clubs={clubs} addToMyClubs={addToMyClubs}
             />
         </Route>
 
