@@ -4,12 +4,45 @@ import { useParams } from 'react-router-dom'
 function ClubView() {
   const { id } = useParams()
   const [clubData, setClubData] = useState(null)
+  const [userData, setUserData] = useState({})
 
   useEffect(() => {
     fetch(`/clubs/${id}`)
       .then(res => res.json())
       .then(data => setClubData(data))
   }, [id])
+
+  // useEffect(() => {
+  //   if (clubData && clubData.posts){
+  //     const userIds = clubData.posts.map(post => post.user_id)
+  //     fetch(`/users?ids=${userIds.join(',')}`)
+  //       .then(resp => resp.json())
+  //       .then(data => {
+  //         const users = {}
+  //         data.forEach(user => {
+  //           users[user.id] = user.username
+  //         })
+  //         setUserData(users)
+  //       })
+  //     }
+  //   }, [clubData])
+
+  useEffect(() => {
+    if (clubData && clubData.posts){
+      const userIds = clubData.posts.map(post => post.user_id)
+      const commentUserIds = clubData.posts.flatMap(post => post.comments).map(comment => comment.user_id)
+      const allUserIds = [...new Set([...userIds, ...commentUserIds])]
+      fetch(`/users?ids=${allUserIds.join(',')}`)
+        .then(resp => resp.json())
+        .then(data => {
+          const users = {}
+          data.forEach(user => {
+            users[user.id] = user.username
+          })
+          setUserData(users)
+        })
+    }
+  }, [clubData])
 
   if (!clubData) return <div>Patience, young padawan...</div>
 
@@ -22,31 +55,33 @@ function ClubView() {
       <p>{description}</p>
 
       {/* Render club's posts */}
-      {posts && posts.length > 0 && (
+      <div>
+  {/* <h2>Posts:</h2> */}
+  {posts && posts.length > 0 ? (
+    posts.map((post) => (
+      <div key={post.id}>
+        <h3>{post.title}</h3>
+        <p>Posted by {userData[post.user_id]} on {new Date(post.created_at).toDateString()}</p>
+        <p>{post.body}</p>
         <div>
-          <h2>Posts:</h2>
-          {posts.map((post) => (
-            <div key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-              {/* <p>Posted by {post.user.username} on {new Date(post.created_at).toDateString()}</p> */}
-         <div>
-                <h4>Comments:</h4>
-                {post.comments && post.comments.length > 0 ? (
-                  <ul>
-                    {post.comments.map(comment => (
-                      <li key={comment.id}>{comment.content}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No comments yet.</p>
-                )}
-              </div>
-              <hr />
-            </div>
-          ))}
+          {/* <h4>Comments:</h4> */}
+          {post.comments && post.comments.length > 0 ? (
+            <ul>
+              {post.comments.map(comment => (
+                <li key={comment.id}>{comment.content} Posted by {userData[comment.user_id]} on {new Date(comment.created_at).toDateString()}</li>
+              ))}
+            </ul>
+          ) : (
+            <h3>No comments yet.</h3>
+          )}
         </div>
-      )}
+        <hr/>
+      </div>
+    ))
+  ) : (
+    <h3>No posts yet!</h3>
+  )}
+</div>
 
       {/* Render comments */}
       {comments && comments.length > 0 && (
@@ -60,7 +95,7 @@ function ClubView() {
         </div>
       )}
     </div>
-  );
+  )
 
 }
 

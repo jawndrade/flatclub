@@ -28,6 +28,7 @@ function NavBar({currentUser, handleLogout}) {
                         <>
                             <img width="25px" className="userImage" src={currentUser.image} alt="user"/>
                             <li><NavLink to='/dashboard' onClick={closeMenu}>Home</NavLink></li>
+                            <li><NavLink to='/memberships' onClick={closeMenu}>My Clubs</NavLink></li>
                             <li><NavLink to='/profile' onClick={closeMenu}>Profile</NavLink></li>
                             <li><NavLink to='/' onClick={() => { closeMenu(); handleLogout(); }}>Logout</NavLink></li>
                         </>

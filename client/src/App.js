@@ -6,6 +6,7 @@ import Signup from "./components/Signup"
 import UserProfile from "./components/UserProfile"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
+import UserClubs from "./components/UserClubs"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -13,21 +14,22 @@ function App() {
   const [clubs, setClubs] = useState([])
   const [comments, setComments] = useState([])
 
-  const updateUser = (user) => setCurrentUser(user)
   const newUser = (newUser) => {
-      setUsers([...users, newUser])
+    setUsers([...users, newUser])
   }
-
+  const updateUser = (user) => setCurrentUser(user)
+  
   useEffect(() => {
     fetch("/authorized_user")
-      .then(resp => {
-        if(resp.ok){
-          resp.json().then(user => {
-            updateUser(user)
-          })
-        }
-      })
+    .then(resp => {
+      if(resp.ok){
+        resp.json().then(user => {
+          updateUser(user)
+        })
+      }
+    })
   }, [])
+  
 
   useEffect(() => {
       fetch('/users')
@@ -41,11 +43,44 @@ function App() {
     .then(data => setClubs(data))
   }, [])
 
-  useEffect(() => {
-    fetch('/comments')
-      .then(resp => resp.json())
-      .then(data => setComments(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch('/comments')
+  //     .then(resp => resp.json())
+  //     .then(data => setComments(data))
+  // }, [])
+
+  function addToMyClubs(club){
+    fetch('/memberships')
+    .then(resp => resp.json())
+    .then(data => {
+      const existingMembership = data.find(membership => membership.user_id === currentUser.id && membership.club_id === club.id)
+      if (existingMembership) {
+        alert("You're already a member of this club, you silly goose!")
+      } else {
+        fetch('/memberships', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            club_id: club.id,
+            user_id: currentUser.id
+          })
+        })
+        .then(resp => {
+          if (resp.ok) {
+            alert('Successfully joined this club!')
+          } else {
+            throw new Error('Failed to join, please try again later')
+          }
+        })
+        .catch(err => {
+          console.error(err)
+          alert("You're already a member of this club, you silly goose!")
+        })
+      }
+    })
+  }
 
   function handleLogout(){
     fetch('/logout', {
@@ -91,12 +126,15 @@ function App() {
         </Route>
 
         <Route path="/dashboard">
-            <Dashboard clubs={clubs}
-            />
+            <Dashboard clubs={clubs} addToMyClubs={addToMyClubs}/>
         </Route>
 
         <Route path="/clubs/:id">
           <ClubView />
+        </Route>
+
+        <Route path="/memberships">
+          <UserClubs currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </Route>
 
       </Switch>
