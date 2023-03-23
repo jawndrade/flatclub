@@ -17,11 +17,6 @@ class MembershipsController < ApplicationController
       end
     end
 
-    # def user_memberships
-    #   @memberships = Membership.where(user_id: current_user.id)
-    #   render json: @memberships
-    # end
-
     private
   
     def membership_params

@@ -7,12 +7,14 @@ import UserProfile from "./components/UserProfile"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
+import NewPostForm from "./components/NewPostForm";
 
 function App() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
   const [clubs, setClubs] = useState([])
   const [comments, setComments] = useState([])
+  const [posts, setPosts] = useState([]);
 
   const newUser = (newUser) => {
     setUsers([...users, newUser])
@@ -42,6 +44,17 @@ function App() {
     .then(resp => resp.json())
     .then(data => setClubs(data))
   }, [])
+
+  // useEffect(() => {
+  //   fetch("/posts")
+  //   .then((resp) => resp.json())
+  //   .then((data) => setPosts(data))
+  // }, [])
+
+  const onDeletePost = (currentUserId) => {
+    const updatedPost = posts.filter((post) => post.id !== currentUserId)
+    setPosts(updatedPost)
+  }
 
   // useEffect(() => {
   //   fetch('/comments')
@@ -130,7 +143,10 @@ function App() {
         </Route>
 
         <Route path="/clubs/:id">
-          <ClubView />
+          <ClubView onDeletePost={onDeletePost}/>
+          <NewPostForm
+            currentUser={currentUser}
+            setPosts={setPosts}/>
         </Route>
 
         <Route path="/memberships">

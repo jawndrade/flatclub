@@ -4,9 +4,9 @@ import "../css/club.css"
 
 function Club({club, addToMyClubs, currentUser}) {
     const {topic, description, name} = club
-
+console.log(club)
     function handleClick() {
-        window.location.href = `/clubs/${club.id}`  
+        window.location.href = `/clubs/${club.club_id}`  
     }
 
     return (
@@ -20,7 +20,7 @@ function Club({club, addToMyClubs, currentUser}) {
                     <button onClick={handleClick}>View posts</button>
                 </NavLink>
                 <br/>
-                {(1 + 1 !== 2) ? <button onClick={() => addToMyClubs(club)}>Join Club</button> : null}
+                {<button onClick={() => addToMyClubs(club)}>Join Club</button>}
             </div>
         </div>
     )

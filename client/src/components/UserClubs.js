@@ -13,11 +13,13 @@ function UserClubs({setCurrentUser, currentUser}) {
     useEffect(() => {
         setUserMemberships(currentUser.my_memberships)
       }, [currentUser])
-      console.log(currentUser.my_memberships)
+    //   console.log(currentUser.my_memberships)
 
     const userMembershipCards = userMemberships.map(club =>
         <Club key={club.name} club={club} currentUser={currentUser}/>
     )
+    // console.log(userMemberships)
+
 
     return (
     <div>
