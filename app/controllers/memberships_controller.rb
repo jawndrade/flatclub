@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
     def index
-        render json: Membership.all
+        @memberships = Membership.all
+        render json: @memberships
     end
     
     def create
