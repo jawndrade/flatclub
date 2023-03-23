@@ -16,9 +16,16 @@ class MembershipsController < ApplicationController
         end
       end
     end
-      private
-    
-      def membership_params
-        params.permit(:user_id, :club_id)
-      end
+
+    # def user_memberships
+    #   @memberships = Membership.where(user_id: current_user.id)
+    #   render json: @memberships
+    # end
+
+    private
+  
+    def membership_params
+      params.permit(:user_id, :club_id)
+    end
+
 end

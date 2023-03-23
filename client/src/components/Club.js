@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import "../css/club.css"
 
-function Club({club, addToMyClubs}) {
+function Club({club, addToMyClubs, currentUser}) {
     const {topic, description, name} = club
 
     function handleClick() {
@@ -20,7 +20,7 @@ function Club({club, addToMyClubs}) {
                     <button onClick={handleClick}>View posts</button>
                 </NavLink>
                 <br/>
-                <button onClick={() => addToMyClubs(club)}>Join Club</button>
+                {(1 + 1 !== 2) ? <button onClick={() => addToMyClubs(club)}>Join Club</button> : null}
             </div>
         </div>
     )

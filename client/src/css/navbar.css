@@ -6,7 +6,7 @@
     height: 3.5rem;
     z-index: 110;
     width: 100%;
-    position: fixed; /* Set the navbar to fixed position */
+    position: fixed;
     top: 0; 
 }
 
