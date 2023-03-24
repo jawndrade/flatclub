@@ -6,7 +6,7 @@ function Club({club, addToMyClubs, currentUser}) {
     const {topic, description, name} = club
 console.log(club)
     function handleClick() {
-        window.location.href = `/clubs/${club.club_id}`  
+        window.location.href = `/clubs/${club.id}`  
     }
 
     return (

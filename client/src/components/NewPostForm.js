@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-// import { useHistory } from 'react-router-dom'
 
-function NewPostForm ({currentUser, setPosts}) {
+function NewPostForm ({currentUser, setPosts, clubId}) {
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
-    // const history = useHistory()
 
     function handleSubmit(e) {
         e.preventDefault()
         const newPost = {
             title: title,
             body: body,
-            user_id: currentUser.id
+            user_id: currentUser.id,
+            club_id: clubId
         }
         
         fetch("/posts", {
@@ -21,6 +20,7 @@ function NewPostForm ({currentUser, setPosts}) {
             },
             body: JSON.stringify(newPost),
         })
+        // console.log(newPost)
         .then(resp => {
             if(resp.status === 201) {
                 fetch("/posts")
