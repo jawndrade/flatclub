@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import NewPostForm from './NewPostForm'
 
-function ClubView() {
+function ClubView({setPosts, currentUser}) {
   const { id } = useParams()
   const [clubData, setClubData] = useState(null)
   const [userData, setUserData] = useState({})
@@ -11,21 +12,7 @@ function ClubView() {
       .then(res => res.json())
       .then(data => setClubData(data))
   }, [id])
-
-  // useEffect(() => {
-  //   if (clubData && clubData.posts){
-  //     const userIds = clubData.posts.map(post => post.user_id)
-  //     fetch(`/users?ids=${userIds.join(',')}`)
-  //       .then(resp => resp.json())
-  //       .then(data => {
-  //         const users = {}
-  //         data.forEach(user => {
-  //           users[user.id] = user.username
-  //         })
-  //         setUserData(users)
-  //       })
-  //     }
-  //   }, [clubData])
+  // console.log(id)
 
   useEffect(() => {
     if (clubData && clubData.posts){
@@ -94,6 +81,11 @@ function ClubView() {
           ))}
         </div>
       )}
+      <NewPostForm
+        currentUser={currentUser}
+        setPosts={setPosts}
+        clubId={id}
+      />
     </div>
   )
 

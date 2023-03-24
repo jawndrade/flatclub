@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from "./components/Login"
 import NavBar from "./components/NavBar"
 import Signup from "./components/Signup"
@@ -7,12 +7,15 @@ import UserProfile from "./components/UserProfile"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
+import NewPostForm from "./components/NewPostForm"
 
 function App() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
   const [clubs, setClubs] = useState([])
   const [comments, setComments] = useState([])
+  const [posts, setPosts] = useState([])
+  // const [currentClub, setCurrentClub] = useState(null)
 
   const newUser = (newUser) => {
     setUsers([...users, newUser])
@@ -42,6 +45,24 @@ function App() {
     .then(resp => resp.json())
     .then(data => setClubs(data))
   }, [])
+
+  // useEffect(() => {
+  //   // fetch current club and set it to state
+  //   fetch(`/clubs/${id}`)
+  //     .then(resp => resp.json())
+  //     .then(data => setCurrentClub(data))
+  // }, [])
+
+  // useEffect(() => {
+  //   fetch("/posts")
+  //   .then((resp) => resp.json())
+  //   .then((data) => setPosts(data))
+  // }, [])
+
+  const onDeletePost = (currentUserId) => {
+    const updatedPost = posts.filter((post) => post.id !== currentUserId)
+    setPosts(updatedPost)
+  }
 
   // useEffect(() => {
   //   fetch('/comments')
@@ -130,7 +151,7 @@ function App() {
         </Route>
 
         <Route path="/clubs/:id">
-          <ClubView />
+          <ClubView onDeletePost={onDeletePost} currentUser={currentUser} setPosts={setPosts}/>
         </Route>
 
         <Route path="/memberships">
