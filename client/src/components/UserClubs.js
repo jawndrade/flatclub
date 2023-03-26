@@ -21,8 +21,8 @@ function UserClubs({setCurrentUser, currentUser}) {
     // console.log(userMemberships)
 
     return (
-      <div>
-        <div>
+      <div className="dashboard-wrapper h-100vh">
+        <div className="dashboard-grid">
           {clubs.map(obj => <Club key={obj.id} club={obj.club} join={false}/>)}
         </div>
       </div>
