@@ -36,3 +36,15 @@
 .dashboard-grid {
     padding-top: 8%;
 }
+
+.h-100vh {
+  min-height: 94vh;
+}
+
+.dashboard-wrapper input{
+  position: relative;
+  top: 3rem;
+  padding:7px 8px;
+  outline: none;
+  font-size: clamp(0.8rem, 2vw, 1.4rem);
+}
