@@ -7,9 +7,14 @@ class ClubsController < ApplicationController
         render json: @clubs.as_json(include: { posts: { include: { comments: { include: :user } } } })
     end
 
+    # def show
+    #     @club = Club.includes(posts: :comments).find(params[:id])
+    #     render json: @club.to_json(include: { posts: { include: { comments: { include: :user } } } })
+    # end
+
     def show
-        @club = Club.includes(posts: :comments).find(params[:id])
-        render json: @club.to_json(include: { posts: { include: { comments: { include: :user } } } })
+        club = Club.find(params[:id])
+        render json: ClubSerializer.new(club).to_json
     end
 
     def create

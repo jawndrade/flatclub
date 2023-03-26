@@ -23,14 +23,14 @@ function Login({updateUser}) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)
         })
-        .then(res => {
-            if(res.ok){
-                res.json().then(user => {
+        .then(resp => {
+            if(resp.ok){
+                resp.json().then(user => {
                     updateUser(user)
                     history.push('/dashboard')
                 })
             } else {
-                res.json().then(json => setErrors(json.errors))
+                resp.json().then(json => setErrors(json.errors))
             }
         })
     }
@@ -52,10 +52,7 @@ function Login({updateUser}) {
                     <input type='password' name='password' value={password} onChange={handleChange} />
                     <br/><br/>
                     {/* <input type='submit' value='Log in' /> */}
-                    <button
-                        // class='border-white border p-2 text-xs text-white'
-                        type="submit">Log in
-                    </button>
+                    <button type="submit">Log in</button>
                 </form>
                 {errors? <div>{errors}</div>:null}
             </div>

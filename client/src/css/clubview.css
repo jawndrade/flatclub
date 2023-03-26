@@ -1,0 +1,22 @@
+/* Parent comment */
+.post {
+    background-color: #0c1f38;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Child comment */
+  .comment {
+    background-color: #35bdf9;
+    color: white;
+    padding: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Grandchild comment and below */
+  .comment-reply .comment-reply {
+    margin-left: 40px;
+  }
+  

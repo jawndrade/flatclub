@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
 import NewPostForm from "./components/NewPostForm"
+import PostView from "./components/PostView"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -15,7 +16,6 @@ function App() {
   const [clubs, setClubs] = useState([])
   const [comments, setComments] = useState([])
   const [posts, setPosts] = useState([])
-  // const [currentClub, setCurrentClub] = useState(null)
 
   const newUser = (newUser) => {
     setUsers([...users, newUser])
@@ -46,29 +46,10 @@ function App() {
     .then(data => setClubs(data))
   }, [])
 
-  // useEffect(() => {
-  //   // fetch current club and set it to state
-  //   fetch(`/clubs/${id}`)
-  //     .then(resp => resp.json())
-  //     .then(data => setCurrentClub(data))
-  // }, [])
-
-  // useEffect(() => {
-  //   fetch("/posts")
-  //   .then((resp) => resp.json())
-  //   .then((data) => setPosts(data))
-  // }, [])
-
   const onDeletePost = (currentUserId) => {
     const updatedPost = posts.filter((post) => post.id !== currentUserId)
     setPosts(updatedPost)
   }
-
-  // useEffect(() => {
-  //   fetch('/comments')
-  //     .then(resp => resp.json())
-  //     .then(data => setComments(data))
-  // }, [])
 
   function addToMyClubs(club){
     fetch('/memberships')
@@ -156,6 +137,10 @@ function App() {
 
         <Route path="/memberships">
           <UserClubs currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        </Route>
+
+        <Route path="/clubs/:id/:post_id">
+          <PostView/>
         </Route>
 
       </Switch>

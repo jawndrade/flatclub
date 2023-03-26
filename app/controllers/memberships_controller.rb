@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
     def index
-        @memberships = Membership.all
+        @memberships = current_user.memberships
         render json: @memberships
     end
     

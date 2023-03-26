@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import "../css/club.css"
 
-function Club({club, addToMyClubs, currentUser}) {
+function Club({club, addToMyClubs, join = true}) {
     const {topic, description, name} = club
-console.log(club)
+    // console.log(club)
+
     function handleClick() {
         window.location.href = `/clubs/${club.id}`  
     }
@@ -20,7 +21,7 @@ console.log(club)
                     <button onClick={handleClick}>View posts</button>
                 </NavLink>
                 <br/>
-                {<button onClick={() => addToMyClubs(club)}>Join Club</button>}
+                {join && <button onClick={() => addToMyClubs(club)}>Join Club</button>}
             </div>
         </div>
     )

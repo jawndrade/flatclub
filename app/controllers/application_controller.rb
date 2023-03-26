@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
 
     before_action :authorize
 
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
+
     private
 
     def authorize
@@ -20,5 +24,5 @@ class ApplicationController < ActionController::API
     def render_invalid_response(exception)
         render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
-
+    
 end
