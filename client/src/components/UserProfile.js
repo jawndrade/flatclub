@@ -5,7 +5,6 @@ import '../css/userprofile.css'
 function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
 
     const [editFormOpen, setEditFormOpen] = useState(false)
-    const [profilePic, setProfilePic] = useState()
     const history = useHistory()
 
     const initialFormValues = {
@@ -36,7 +35,7 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
         }
 
     await fetch(`users/${currentUser.id}`, editProfile)
-            .then(res => res.json())
+            .then(resp => resp.json())
             .then(() => {
                 onEditUserProfile(formData) 
                 history.push("/profile")
@@ -68,23 +67,17 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
     async function deleteAccount() {
         let user_id = currentUser.id
 
-        await fetch("/logout", {
-            method: "DELETE",
-            mode:"cors",
-            headers: {
-            "Content-Type": "application/json"
-            }
-        })
-
         if (user_id) {
-            fetch(`users/${user_id}`,
+            await fetch(`users/${user_id}`,
             { method: 'DELETE'})
-            .then(() => onDeleteUser(id))
-            alert("Your account has successfully been deactivated.")
+            .then((resp) => {
+                resp.json().then(resp=>console.log(resp))
+                onDeleteUser(id)
+                alert("Your account has successfully been deactivated.")
+            })
         }
-
-        history.push("/posts")
-        window.location.reload();
+        history.push("/login")
+        window.location.reload()
     }
         if(!currentUser) {history.push("/posts")}
 
