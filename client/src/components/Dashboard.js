@@ -5,7 +5,11 @@ function Dashboard({clubs, addToMyClubs}) {
     const [clubsDisplayed, setClubsDisplayed] = useState(clubs)
 
     function searchClub(e){
-        setClubsDisplayed(clubs.filter(club => club.name.toLowerCase().includes(e.target.value)))
+        setClubsDisplayed(clubs.filter(club =>
+            club.name.toLowerCase().includes(e.target.value) ||
+            club.description.toLowerCase().includes(e.target.value) ||
+            club.topic.toLowerCase().includes(e.target.value)
+        ))
     }
 
     useEffect(() => {
