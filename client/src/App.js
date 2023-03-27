@@ -10,6 +10,7 @@ import UserClubs from "./components/UserClubs"
 import NewPostForm from "./components/NewPostForm"
 import PostView from "./components/PostView"
 import Search from './components/Search'
+import NewCommentForm from "./components/NewCommentForm"
 
 function App() {
   const [users, setUsers] = useState([])

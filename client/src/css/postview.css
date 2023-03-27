@@ -74,6 +74,7 @@
 
   .club-view .club-posts {
     min-width: 350px;
+    max-width: 100%;
     flex-grow: 1;
     padding-left: 1rem;
   }

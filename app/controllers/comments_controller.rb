@@ -2,16 +2,16 @@ class CommentsController < ApplicationController
     skip_before_action :authorize
 
     def index
-        comments = @post.comments
+        comments = Comment.all
         render json: comments.as_json(include: :user)
     end
     
     def create
-        comment = @post.comments.new(comment_params.merge(user_id: current_user.id))
-        if @comment.save
-            render json: @comment, status: :created
+        comment = Comment.new(comment_params)
+        if comment.save
+            render json: comment, status: :created
         else
-            render json: @comment.errors, status: :unprocessable_entity
+            render json: comment.errors, status: :unprocessable_entity
         end
     end
     
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     private
     
     def comment_params
-        params.permit(:content)
+        params.permit(:content, :user_id, :post_id)
     end
     
 end

@@ -20,7 +20,7 @@ function PostView(){
         .then(resp=>resp.json())
         .then(data=>setClub(data))
     },[])
-    // console.log(club)
+    console.log(post.comments)
 
     return(
         <div className="post-main">
