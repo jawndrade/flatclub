@@ -1,5 +1,22 @@
 .club-desc {
-    position: sticky;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 4rem;
+  width: 25%;
+  min-width: 250px;
+  height: 75vh;
+  overflow-y: scroll;
+  text-align: center;
+  margin: 0 1rem 0 0;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #35bdf9;
+  border-right: none;
+  background: #133056;
+  padding-left: 10px;
+  z-index:1;
+    /* position: sticky;
     top: 4rem;
     width: 25%;
     min-width: 250px;
@@ -12,8 +29,8 @@
     border-color: #35bdf9;
     border-right: none;
     background: #133056;
-    /* box-shadow: 8px 8px 16px #122b68, -8px -8px 16px #122b68; */
-    padding-left: 10px;
+    box-shadow: 8px 8px 16px #122b68, -8px -8px 16px #122b68;
+    padding-left: 10px; */
 }
 .club-desc::-webkit-scrollbar {
     width: 10px;
@@ -63,12 +80,17 @@
 }
 
 .club-view {
-    width: 100%;
+    /* width: 100%;
     background-color: #133056;
     display: flex;
     flex-wrap: wrap-reverse;
     align-items: flex-end;
     padding-top: 4rem;
+    color: white; */
+    width: 100%;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: row;
     color: white;
   }
 
@@ -85,6 +107,7 @@
 
   .club-view .club-posts div {
     font-size: clamp(0.9rem, 1.5vw, 1.7rem);
+    word-wrap: break-word;
   }
 
   .club-view .club-posts form label {
