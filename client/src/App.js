@@ -9,6 +9,7 @@ import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
 import NewPostForm from "./components/NewPostForm"
 import PostView from "./components/PostView"
+import Search from './components/Search'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -138,8 +139,12 @@ function App() {
           <UserClubs currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </Route>
 
+        <Route path="/search">
+          <Search clubs={clubs}/>
+        </Route>
+
         <Route path="/clubs/:id/:post_id">
-          <PostView/>
+          <PostView />
         </Route>
 
       </Switch>
