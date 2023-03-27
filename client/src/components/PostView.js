@@ -11,13 +11,13 @@ function PostView(){
 
     useEffect(()=>{
         fetch(`/posts/${post_id}`)
-        .then(r=>r.json())
+        .then(resp=>resp.json())
         .then(data=>setPost(data))
     },[])
 
     useEffect(()=>{
         fetch(`/clubs/${id}`)
-        .then(r=>r.json())
+        .then(resp=>resp.json())
         .then(data=>setClub(data))
     },[])
     // console.log(club)

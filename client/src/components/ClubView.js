@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom'
 import NewPostForm from './NewPostForm'
 import ClubDescription from './ClubDescription'
 import '../css/clubview.css'
+import NewCommentForm from './NewCommentForm'
 
-function ClubView({setPosts, currentUser}) {
+function ClubView({currentUser, setPosts}) {
   const { id } = useParams()
   const [clubData, setClubData] = useState(null)
   const [userData, setUserData] = useState({})
@@ -53,11 +54,11 @@ function ClubView({setPosts, currentUser}) {
               key={post.id}
               className="single-post"
               >
-              <h3 className='title'
+              <h4 className='title'
               onClick={() => {
                 window.location.href = `./${id}/${post.id}`
               }}
-              >{post.title}</h3>
+              >{post.title}</h4>
               <p>
                 Posted by <b>{post.user.username}</b> on{' '}
                 <i>
@@ -65,6 +66,7 @@ function ClubView({setPosts, currentUser}) {
                 </i>
               </p>
               <p>{post.body}</p>
+              <NewCommentForm currentUser={currentUser} clubId={id}/>
               <div>
                 {/* <h4>Comments:</h4> */}
                 {post.comments && post.comments.length > 0 ? (
@@ -77,7 +79,7 @@ function ClubView({setPosts, currentUser}) {
                     ))}
                   </ul>
                 ) : (
-                  <h3>No comments yet.</h3>
+                  <h4>No comments yet.</h4>
                 )}
               </div>
               <hr />
