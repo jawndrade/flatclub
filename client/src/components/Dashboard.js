@@ -3,23 +3,37 @@ import Club from './Club'
 
 function Dashboard({clubs, addToMyClubs}) {
     const [clubsDisplayed, setClubsDisplayed] = useState(clubs)
-
-    function searchClub(e){
-        setClubsDisplayed(clubs.filter(club =>
-            club.name.toLowerCase().includes(e.target.value) ||
-            club.description.toLowerCase().includes(e.target.value) ||
-            club.topic.toLowerCase().includes(e.target.value)
-        ))
-    }
+    const [sortOrder, setSortOrder] = useState('')
 
     useEffect(() => {
         setClubsDisplayed(clubs)
     }, [clubs])
+
+    const sortClubs = (order) => {
+        let sortedClubs = []
+        if (order === "asc") {
+          sortedClubs = [...clubsDisplayed].sort((a, b) => a.name.localeCompare(b.name))
+        } else {
+          sortedClubs = [...clubsDisplayed].sort((a, b) => b.name.localeCompare(a.name))
+        }
+        setClubsDisplayed(sortedClubs)
+    }
+
+    const handleSortSelectChange = (e) => {
+        setSortOrder(e.target.value)
+        sortClubs(e.target.value)
+    }
     
     return (
         <div className="dashboard-wrapper">
-            {/* <h2>All clubs</h2> */}
-            <input placeholder='Search for clubs...'  onChange={searchClub}/>
+            <h3>All Clubs</h3>
+            <div>
+                <select onChange={handleSortSelectChange}>
+                    <option value="">Sort by</option>
+                    <option value="asc">Sort A-Z</option>
+                    <option value="desc">Sort Z-A</option>
+                </select>
+            </div>
             <div className="dashboard-grid">
                 {clubsDisplayed.map(club => <Club key={club.name} club={club} addToMyClubs={addToMyClubs}/>)}
             </div>

@@ -66,7 +66,7 @@ function ClubView({currentUser, setPosts}) {
                 </i>
               </p>
               <p>{post.body}</p>
-              <NewCommentForm currentUser={currentUser} clubId={id}/>
+              <NewCommentForm currentUser={currentUser} clubId={id} postId={post.id}/>
               <div>
                 {/* <h4>Comments:</h4> */}
                 {post.comments && post.comments.length > 0 ? (

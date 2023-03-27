@@ -20,7 +20,6 @@ function NewPostForm ({currentUser, setPosts, clubId}) {
             },
             body: JSON.stringify(newPost),
         })
-        // console.log(newPost)
         .then(resp => {
             if(resp.status === 201) {
                 fetch("/posts")

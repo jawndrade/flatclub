@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-function NewCommentForm ({currentUser, setComments}) {
+function NewCommentForm ({currentUser, setComments, postId}) {
     const [content, setContent] = useState("")
-    const {id, post_id} = useParams()
 
     function handleSubmit(e) {
         e.preventDefault()
         const newComment = {
             content: content,
             user_id: currentUser.id,
-            post_id: post_id
+            post_id: postId
         }
         
         fetch("/comments", {
@@ -20,10 +19,10 @@ function NewCommentForm ({currentUser, setComments}) {
             },
             body: JSON.stringify(newComment),
         })
-        console.log(newComment)
+        // console.log(newComment)
         .then(resp => {
             if(resp.status === 201) {
-                fetch(`/posts/${id}`)
+                fetch(`/posts/${postId}`)
                 .then((resp) => resp.json())
                 .then((data) => setComments(data))
                 window.location.reload()
