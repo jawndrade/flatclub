@@ -9,7 +9,7 @@ import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
 import PostView from "./components/PostView"
 import Search from './components/Search'
-import NewCommentForm from "./components/NewCommentForm"
+import Hero from "./components/Hero"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -88,7 +88,7 @@ function App() {
       method: 'DELETE'
     })
     .then(setCurrentUser(false))
-    .then(window.location.href = '/login')
+    .then(window.location.href = '/')
   }
 
   const onDeleteUser = (id) => {
@@ -108,7 +108,7 @@ function App() {
       <NavBar currentUser={currentUser} handleLogout={handleLogout}/>
       <Switch>
         <Route exact path="/">
-          {/* <Login updateUser={updateUser}/> */}
+          <Hero />
         </Route>
 
         <Route exact path="/login">

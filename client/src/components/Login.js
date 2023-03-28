@@ -1,8 +1,14 @@
 import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import "../css/login.css"
+import Sheet from '@mui/joy/Sheet'
+import Typography from '@mui/joy/Typography'
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel'
+import Input from '@mui/joy/Input'
+import Button from '@mui/joy/Button'
+import Link from '@mui/joy/Link'
 
-function Login({updateUser}) {
+function Login({ updateUser }) {
     const [formData, setFormData] = useState({
         username:'',
         password:''
@@ -41,22 +47,58 @@ function Login({updateUser}) {
     }
 
     return (
-        <div className="login-container"> 
-        <h1 className="h2">Welcome to ClubFlatiron</h1>
-            <div className="login-form-container">
-                <form className="login-form" onSubmit={onSubmit}>
-                    <label for="username">Username: </label>
-                    <input type='text' name='username' value={username} onChange={handleChange} />
-                    <br/><br/>
-                    <label for="password">Password: </label>
-                    <input type='password' name='password' value={password} onChange={handleChange} />
-                    <br/><br/>
-                    {/* <input type='submit' value='Log in' /> */}
-                    <button type="submit">Log in</button>
-                </form>
-                {errors? <div>{errors}</div>:null}
+        <Sheet
+        sx={{
+            width: 300,
+            mx: 'auto', // margin left & right
+            my: 13, // margin top & botom
+            py: 3, // padding top & bottom
+            px: 2, // padding left & right
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
+            borderRadius: 'sm',
+            boxShadow: 'md',
+          }}
+          variant="outlined"> 
+            <div>
+                <Typography level="h4" component="h1">
+                    <b>Welcome back!</b>
+                </Typography>
+                <Typography level="body2">Please log in to continue.</Typography>
             </div>
-        </div>
+                <form onSubmit={onSubmit}>
+                <FormControl>
+                    <FormLabel>Username</FormLabel>
+                    <Input
+                        variant="plain"
+                        name="username"
+                        type="text"
+                        value={username}
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl>
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                        variant="plain"
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <Button type="submit">Log in</Button>
+                <Typography fontSize="sm">{errors? <div>{errors}</div>:null}</Typography>
+                </form>
+                <Typography
+                    endDecorator={<Link href="/signup">Sign up</Link>}
+                    fontSize="sm"
+                    sx={{ alignSelf: 'center' }}
+                >
+                    Don't have an account?
+                </Typography>
+        </Sheet>
     )
 }
 
