@@ -11,7 +11,7 @@
 }
 
 .logo{
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -19,15 +19,11 @@
 
 .logo-container {
     display: flex;
-}
-
-.icon-container {
-    display: flex;
-    align-items: center;
+    width: 201px;
 }
 
 .logo-text{
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 300;
     color: #35bdf9;
     margin-left: 8%;

@@ -12,7 +12,7 @@
   border-radius: 12px;
   border-style: solid;
   border-color: #35bdf9;
-  border-right: none;
+  /* border-right: none; */
   background: #133056;
   padding-left: 10px;
   z-index:1;

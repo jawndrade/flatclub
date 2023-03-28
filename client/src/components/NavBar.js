@@ -5,35 +5,35 @@ import "../css/navbar.css"
 function NavBar({currentUser, handleLogout}) {
 
     // set state for toggling navbar menu 
-    const [showMenu, setShowMenu] = useState(false)
+    // const [showMenu, setShowMenu] = useState(false)
 
-    function toggleMenu(){
-        setShowMenu(!showMenu)
-    }
+    // function toggleMenu(){
+    //     setShowMenu(!showMenu)
+    // }
 
-    function closeMenu(){
-        setShowMenu(false)
-    }
+    // function closeMenu(){
+    //     setShowMenu(false)
+    // }
 
     return (
         <nav className="navbar-container">
             <div className="logo-container">
-                <h2 className="logo-text">//ClubFlatiron</h2>
+                <h2 className="logo-text">Club Flatiron</h2>
             </div>
                 <ul className='nav-links grow'>
                     {currentUser && Object.keys(currentUser).length !== 0 ? (
                         <>
                             <img width="25px" className="userImage" src={currentUser.image} alt="user"/>
-                            <li><NavLink to='/dashboard' onClick={closeMenu}>Home</NavLink></li>
-                            <li><NavLink to='/memberships' onClick={closeMenu}>My Clubs</NavLink></li>
-                            <li><NavLink to='/search' onClick={closeMenu}>Search</NavLink></li>
-                            <li><NavLink to='/profile' onClick={closeMenu}>Profile</NavLink></li>
-                            <li><NavLink to='/' onClick={() => { closeMenu(); handleLogout(); }}>Logout</NavLink></li>
+                            <li><NavLink to='/dashboard' >Home</NavLink></li>
+                            <li><NavLink to='/memberships' >My Clubs</NavLink></li>
+                            <li><NavLink to='/search' >Search</NavLink></li>
+                            <li><NavLink to='/profile' >Profile</NavLink></li>
+                            <li><NavLink to='/' onClick={() => {handleLogout()}}>Logout</NavLink></li>
                         </>
                         ) : (
-                        <>
-                            <li><NavLink to='/login' onClick={closeMenu}>Log In</NavLink></li>
-                            <li><NavLink to='/signup' onClick={closeMenu}>Sign Up</NavLink></li>
+                            <>
+                            <li><NavLink to='/login' >Log In</NavLink></li>
+                            <li><NavLink to='/signup' >Sign Up</NavLink></li>
                         </>
                     )}
                 </ul>

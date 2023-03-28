@@ -1,7 +1,7 @@
-.h2{
+/* .h2{
     font-weight: 250;
     color: #fff;
-}
+} */
 
 .login-container {
     background-color: #133056;
@@ -13,26 +13,26 @@
     align-items: center;
 }
 
-.login-form-container{
+/* .login-form-container{
     border: solid 1px black;
     border-radius: 10px;
     width: 300px;
     padding: 15px;
     background-color: white;
     color: black;
-}
-
+} */
+/* 
 .login-form-container > h3 {
     font-size: 30px;
     font-weight: 800;
     text-align: center;
     margin-top: 5px;
-}
+} */
 
-.login-form > input {
+/* .login-form > input {
     width: 95%;
     align-self: center;
-}
+} */
 
 a {
     text-decoration: none;
@@ -42,3 +42,29 @@ a {
 a:hover {
     color: lightgray;
 }
+
+.homepage {
+    background-image: url("https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .welcome-header {
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: 100;
+    letter-spacing: 5px;
+  }
+  
+  #welcomemessage {
+    padding-top: 50px;
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: lighter;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  }

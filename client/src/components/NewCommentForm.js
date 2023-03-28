@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 function NewCommentForm ({currentUser, setComments, postId}) {
     const [content, setContent] = useState("")
-    console.log(postId)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -20,7 +18,6 @@ function NewCommentForm ({currentUser, setComments, postId}) {
             },
             body: JSON.stringify(newComment),
         })
-        // console.log(newComment)
         .then(resp => {
             if(resp.status === 201) {
                 fetch(`/posts/${postId}`)
