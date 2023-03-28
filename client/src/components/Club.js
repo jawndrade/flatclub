@@ -16,7 +16,6 @@ function Club({club, addToMyClubs, join = true}) {
                 {/* <h2>Club {name}</h2> */}
                 <h2 className="card-h2">Club {topic}</h2>
                 <p>{description}</p>
-                <br/>
                 <NavLink to={`/clubs/${club.id}`}>
                     <button onClick={handleClick}>View posts</button>
                 </NavLink>
