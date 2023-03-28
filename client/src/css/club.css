@@ -37,6 +37,17 @@
     padding-top: 1%;
 }
 
+.dashboard-grid-item {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  padding: 20px;
+  width: 30%;
+  float: left;
+  margin: 1.66%;
+}
+
 .h-100vh {
   min-height: 94vh;
 }

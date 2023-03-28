@@ -5,14 +5,15 @@ class CommentsController < ApplicationController
         comments = Comment.all
         render json: comments.as_json(include: :user)
     end
+
+    def show_all
+        post = Post.find_by!(id: params[:post_id])
+        c post.comments, status: :ok
+    end
     
     def create
-        comment = Comment.new(comment_params)
-        if comment.save
-            render json: comment, status: :created
-        else
-            render json: comment.errors, status: :unprocessable_entity
-        end
+        comment = Comment.create!(comment_params)
+        render json: comment, status: :created
     end
     
     def destroy

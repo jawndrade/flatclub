@@ -3,18 +3,14 @@ class ClubsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show, :create]
 
     def index
-        @clubs = Club.all.includes(:posts)
-        render json: @clubs.as_json(include: { posts: { include: { comments: { include: :user } } } })
+        render json: Club.all
+        # @clubs = Club.all.includes(:posts)
+        # render json: @clubs.as_json(include: { posts: { include: { comments: { include: :user } } } })
     end
-
-    # def show
-    #     @club = Club.includes(posts: :comments).find(params[:id])
-    #     render json: @club.to_json(include: { posts: { include: { comments: { include: :user } } } })
-    # end
 
     def show
         club = Club.find(params[:id])
-        render json: ClubSerializer.new(club).to_json
+        render json: club
     end
 
     def create

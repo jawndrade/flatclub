@@ -2,19 +2,13 @@ class PostsController < ApplicationController
   skip_before_action :authorize
 
   def index
-    club = Club.find(params[:club_id])
-    posts = club.posts
-    render json: posts
+    posts = Post.all
+    render json: posts, status: :ok
   end
-
-  # def show
-  #   @post = Post.find(params[:id])
-  #   @comments = @post.comments.includes(:user).order(created_at: :asc)
-  # end
 
   def show
     post = Post.find(params[:id])
-    render json: post
+    render json: post, serializer: PostSerializer, status: :ok
   end
 
   def create

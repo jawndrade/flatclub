@@ -35,9 +35,14 @@ function Dashboard({clubs, addToMyClubs}) {
                 </select>
             </div>
             <div className="dashboard-grid">
-                {clubsDisplayed.map(club => <Club key={club.name} club={club} addToMyClubs={addToMyClubs}/>)}
+                {clubsDisplayed.map(club => (
+                    <div key={club.name} className="dashboard-grid-item">
+                        <Club club={club} addToMyClubs={addToMyClubs}/>
+                    </div>
+                ))}
             </div>
         </div>
+
     )
 }
 
