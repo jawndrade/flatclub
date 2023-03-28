@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import Sheet from '@mui/joy/Sheet'
 import Typography from '@mui/joy/Typography'
-import FormControl from '@mui/joy/FormControl'
+import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 import Button from '@mui/joy/Button'
 import Link from '@mui/joy/Link'
 
-function Login({updateUser}) {
+function Login({ updateUser }) {
     const [formData, setFormData] = useState({
         username:'',
         password:''
@@ -67,7 +67,8 @@ function Login({updateUser}) {
                 </Typography>
                 <Typography level="body2">Please log in to continue.</Typography>
             </div>
-                <FormControl onSubmit={onSubmit}>
+                <form onSubmit={onSubmit}>
+                <FormControl>
                     <FormLabel>Username</FormLabel>
                     <Input
                         variant="plain"
@@ -76,9 +77,9 @@ function Login({updateUser}) {
                         value={username}
                         onChange={handleChange}
                     />
-                    </FormControl>
+                </FormControl>
                 <FormControl>
-                    <FormLabel>Password: </FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <Input
                         variant="plain"
                         name="password"
@@ -87,7 +88,9 @@ function Login({updateUser}) {
                         onChange={handleChange}
                     />
                 </FormControl>
-                <Button type="submit" sx={{ mt: 1 }}>Log in</Button>
+                <Button type="submit">Log in</Button>
+                <Typography fontSize="sm">{errors? <div>{errors}</div>:null}</Typography>
+                </form>
                 <Typography
                     endDecorator={<Link href="/signup">Sign up</Link>}
                     fontSize="sm"
@@ -95,7 +98,6 @@ function Login({updateUser}) {
                 >
                     Don't have an account?
                 </Typography>
-            {errors? <div>{errors}</div>:null}
         </Sheet>
     )
 }
