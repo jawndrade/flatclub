@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 function NewCommentForm ({currentUser, setComments, postId}) {
     const [content, setContent] = useState("")
+    console.log(postId)
 
     function handleSubmit(e) {
         e.preventDefault()

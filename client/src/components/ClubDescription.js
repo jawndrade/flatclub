@@ -1,11 +1,10 @@
 import React from "react"
 
 function ClubDescription({club}){
-
     return(
         <div className="club-desc">
-            <h2>{(club || {}).topic}</h2>
-            <p>{(club || {}).description}</p>
+            <h2>{club.topic}</h2>
+            <p>{club.description}</p>
         <hr/>
         <div className="members-main">
             <div>

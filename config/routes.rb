@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/home', to: 'clubs#index'
   post '/memberships', to: 'memberships#create'
+  get '/posts/:post_id/comments', to: 'comments#show_all'
   
   get '*path',
       to: 'fallback#index',

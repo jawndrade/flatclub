@@ -7,7 +7,6 @@ import UserProfile from "./components/UserProfile"
 import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
-import NewPostForm from "./components/NewPostForm"
 import PostView from "./components/PostView"
 import Search from './components/Search'
 import NewCommentForm from "./components/NewCommentForm"
@@ -16,7 +15,6 @@ function App() {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
   const [clubs, setClubs] = useState([])
-  const [comments, setComments] = useState([])
   const [posts, setPosts] = useState([])
 
   const newUser = (newUser) => {
