@@ -1,26 +1,24 @@
-/* Parent comment */
 .post {
-    /* background-color: #0c1f38; */
-    color: white;
+    background-color: white;
+    color: #0c1f38;
     padding: 10px;
     margin-bottom: 10px;
-    border-color: white;
-    border-style: solid;
-    /* position: relative; */
+    border-color: #08ABDF;
+    border-left: solid;
 }
-/* Child comment */
+
 .comment {
-  /* background-color: #35bdf9; */
-  color: white;
+  color: #0c1f38;
   padding: 10px;
   margin-left: 25px;
   margin-bottom: 10px;
-  border-color: white;
-  border-style: solid;
+  border-color: #0c1f38;
+  border-left: solid;
 }
-
-/* .reply-container {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-} */
+.comment-text {
+  font-size: small;
+}
+.comment-text:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
