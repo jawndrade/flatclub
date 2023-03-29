@@ -60,7 +60,7 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
         </form>
     )
 
-    const editButton = <button onClick={()=> setEditFormOpen(true)}>Edit Profile</button>
+    const editButton = <button className="edit-button" onClick={()=> setEditFormOpen(true)}>Edit Profile</button>
 
     const {id} = currentUser
 
@@ -85,7 +85,7 @@ function UserProfile({currentUser, onDeleteUser, onEditUserProfile}) {
             <div>
                 <div className='container'>
                     {/* <input type="text" placeholder="Enter new image URL here" name="photo" id="profilePicInput" /> */}
-                    <label htmlFor="profileImageInput" className='max-w-max mx-auto'>
+                    <label htmlFor="profileImageInput">
                         <div className="profile-image" role="button" title="Click to edit photo">
                             <img src={currentUser.image} alt="profile" />
                         </div>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Typography from '@mui/material/Typography'
 import Club from './Club'
+import Container from '@mui/material/Container'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -25,11 +26,11 @@ function Dashboard({clubs, addToMyClubs}) {
     }
     
     return (
-        <div className="dashboard-wrapper">
+        <Container sx={{marginTop: "40px", paddingTop: "60px", background: "inherit"}}>
             <Typography variant='h4' color="white" fontWeight={300}>All Clubs</Typography>
             <Typography variant='subtitle1' color="white" fontWeight={300}>Peruse clubs below. View their posts at any time and if you like what you see, join them!</Typography>
             <div className="dashboard-sort-select-container">
-            <FormControl>            
+                <FormControl>            
                 <InputLabel sx={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "-10px" }}>Sort</InputLabel>
                 <Select
                     size="small"
@@ -41,8 +42,8 @@ function Dashboard({clubs, addToMyClubs}) {
                     <MenuItem value="asc">A-Z</MenuItem>
                     <MenuItem value="desc">Z-A</MenuItem>
                 </Select>
-            </FormControl>
-        </div>
+                </FormControl>
+            </div>
         <div className="dashboard-grid">
             <hr />
             {clubsDisplayed.map(club => (
@@ -51,8 +52,7 @@ function Dashboard({clubs, addToMyClubs}) {
                 </div>
             ))}
         </div>
-        </div>
-
+        </Container>
     )
 }
 
