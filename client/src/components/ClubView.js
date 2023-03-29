@@ -96,7 +96,7 @@ function ClubView({ currentUser, setPosts }) {
   })
 
   return (
-    <Container sx={{ background: 133056 }}>
+    <Container sx={{marginTop: "40px", paddingTop: "60px", minWidth: "100%", background: "#133056"}}>
       <div className='club-view'>
         <ClubDescription club={club}/>
           <div className='club-posts'>

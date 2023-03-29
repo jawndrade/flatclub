@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from "react-router-dom"
 import "../css/club.css"
+import Button from '@mui/material/Button'
 
 function Club({club, addToMyClubs, join = true}) {
     const {topic, description, name} = club
@@ -17,10 +18,10 @@ function Club({club, addToMyClubs, join = true}) {
                 <h2 className="card-h2">Club {topic}</h2>
                 <p>{description}</p>
                 <NavLink to={`/clubs/${club.id}`}>
-                    <button onClick={handleClick}>View posts</button>
+                    <Button onClick={handleClick} sx={{ color: '0c1f38' }}>View posts</Button>
                 </NavLink>
                 <br/>
-                {join && <button onClick={() => addToMyClubs(club)}>Join Club</button>}
+                {join && <Button onClick={() => addToMyClubs(club)}>Join Club</Button>}
             </div>
         </div>
     )

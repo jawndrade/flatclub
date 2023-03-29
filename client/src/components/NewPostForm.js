@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Button from '@mui/material/Button'
 
 function NewPostForm ({currentUser, setPosts, clubId}) {
     const [title, setTitle] = useState("")
@@ -44,7 +45,7 @@ function NewPostForm ({currentUser, setPosts, clubId}) {
                 <textarea value={body} onChange={(e) => setBody(e.target.value)} />
             </label>
             <br />
-            <button type="submit">Add Post</button>
+            <Button type="submit" variant="outlined" sx={{ color: 'white' }}>Add Post</Button>
         </form>
     )
 }
