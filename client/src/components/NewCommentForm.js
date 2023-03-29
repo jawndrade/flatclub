@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function NewCommentForm ({currentUser, setComments, postId}) {
+function NewCommentForm ({currentUser, setComments, postId, commentId}) {
     const [content, setContent] = useState("")
 
     function handleSubmit(e) {
@@ -8,7 +8,8 @@ function NewCommentForm ({currentUser, setComments, postId}) {
         const newComment = {
             content: content,
             user_id: currentUser.id,
-            post_id: postId
+            post_id: postId,
+            id: commentId
         }
         
         fetch("/comments", {
