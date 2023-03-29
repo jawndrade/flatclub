@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 import Club from './Club'
 
 function UserClubs({setCurrentUser, currentUser}) {
@@ -11,11 +13,18 @@ function UserClubs({setCurrentUser, currentUser}) {
 }, [])
 
     return (
-      <div className="dashboard-wrapper h-100vh">
+      <Container sx={{marginTop: "50px", paddingTop: "60px", background: "inherit"}}>
+        <Typography variant='h4' color="white" fontWeight={300}>My Clubs</Typography>
         <div className="dashboard-grid">
-          {clubs.map(obj => <Club key={obj.id} club={obj.club} join={false}/>)}
+          <hr />
+          <br />
+          {clubs.map(obj => (
+            <div key={obj.name} className="dashboard-grid-item">
+              <Club key={obj.id} club={obj.club} join={false}/>
+            </div>
+          ))}
         </div>
-      </div>
+      </Container>
     )
   }
 
