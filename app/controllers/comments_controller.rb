@@ -6,9 +6,14 @@ class CommentsController < ApplicationController
         render json: comments.as_json(include: :user)
     end
 
+    def show
+        comment = Coomment.find(params[:id])
+        render json: comment, status: :ok
+    end
+
     def show_all
         post = Post.find_by!(id: params[:post_id])
-        c post.comments, status: :ok
+        render json: post.comments, status: :ok
     end
     
     def create
