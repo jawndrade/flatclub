@@ -8,8 +8,9 @@ import Dashboard from "./components/Dashboard"
 import ClubView from "./components/ClubView"
 import UserClubs from "./components/UserClubs"
 import PostView from "./components/PostView"
-import Search from './components/Search'
+import Search from "./components/Search"
 import Hero from "./components/Hero"
+import Whiteboard from "./components/Whiteboard"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -144,6 +145,10 @@ function App() {
 
         <Route path="/clubs/:id/:post_id">
           <PostView />
+        </Route>
+
+        <Route path="/whiteboard">
+          <Whiteboard />
         </Route>
 
       </Switch>

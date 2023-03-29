@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search"
 
 function Search({ clubs }) {
   const [clubsDisplayed, setClubsDisplayed] = useState([])
-  console.log(clubs)
+  // console.log(clubs)
   
   function searchClub(e) {
     setClubsDisplayed(clubs.filter(club =>

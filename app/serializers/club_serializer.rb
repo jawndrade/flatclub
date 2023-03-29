@@ -1,8 +1,6 @@
 class ClubSerializer < ActiveModel::Serializer
   attributes :id, :description, :topic, :posts, :users, :name
-  # has_many :posts
-  # has_many :users
-  # has_many :comments, through :posts
+
   def posts
     object.posts.map do |post| {
       id: post.id,

@@ -4,17 +4,6 @@ import "../css/navbar.css"
 
 function NavBar({currentUser, handleLogout}) {
 
-    // set state for toggling navbar menu 
-    // const [showMenu, setShowMenu] = useState(false)
-
-    // function toggleMenu(){
-    //     setShowMenu(!showMenu)
-    // }
-
-    // function closeMenu(){
-    //     setShowMenu(false)
-    // }
-
     return (
         <nav className="navbar-container">
             <div className="logo-container">
@@ -24,10 +13,11 @@ function NavBar({currentUser, handleLogout}) {
                     {currentUser && Object.keys(currentUser).length !== 0 ? (
                         <>
                             <img width="25px" className="userImage" src={currentUser.image} alt="user"/>
-                            <li><NavLink to='/dashboard' >Home</NavLink></li>
-                            <li><NavLink to='/memberships' >My Clubs</NavLink></li>
-                            <li><NavLink to='/search' >Search</NavLink></li>
-                            <li><NavLink to='/profile' >Profile</NavLink></li>
+                            <li><NavLink to='/dashboard'>Home</NavLink></li>
+                            <li><NavLink to='/memberships'>My Clubs</NavLink></li>
+                            <li><NavLink to='/search'>Search</NavLink></li>
+                            <li><NavLink to='/whiteboard'>Whiteboard</NavLink></li>
+                            <li><NavLink to='/profile'>Profile</NavLink></li>
                             <li><NavLink to='/' onClick={() => {handleLogout()}}>Logout</NavLink></li>
                         </>
                         ) : (
